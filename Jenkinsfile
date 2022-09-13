@@ -2,7 +2,7 @@ pipeline{
 
 	agent none // biến toàn cục
 	environment{
-		DOCKER_IMAGE = "congtusoma146/test-jenkins",
+		DOCKER_IMAGE = "congtusoma146/test-jenkins"
 		ENV MONGO_DB_USERNAME=admin \
     	MONGO_DB_PWD=password
 }
