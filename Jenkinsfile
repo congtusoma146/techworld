@@ -3,8 +3,6 @@ pipeline{
 	agent none // biến toàn cục
 	environment{
 		DOCKER_IMAGE = "congtusoma146/test-jenkins"
-		MONGO_DB_USERNAME=admin \
-    	MONGO_DB_PWD=password
 }
 	stages {
 		stage("Test")
