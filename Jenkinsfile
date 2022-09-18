@@ -3,7 +3,6 @@ pipeline{
 	agent any // biến toàn cục
 	/* environment{
 		DOCKER_IMAGE = "congtusoma146/techworld" */
-}
 	stages {
 
 		statge ("build"){
@@ -40,4 +39,6 @@ post {
       echo "FAILED"
     }
   }
+}
+	}
 }
