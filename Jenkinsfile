@@ -5,7 +5,7 @@ pipeline{
 		DOCKER_IMAGE = "congtusoma146/techworld" */
 	stages {
 
-		statge ("build"){
+		stage ("build"){
 			steps {
 				echo 'Hello build'
 		}
@@ -27,7 +27,7 @@ pipeline{
 				/* sh "npm run test" */
 			}
 		}
-		statge ("deploy"){
+		stage ("deploy"){
 			steps {
 				echo 'Hello deploy'
 		}
