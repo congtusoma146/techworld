@@ -1,26 +1,35 @@
 pipeline{
 
 	agent any // biến toàn cục
-	environment{
-		DOCKER_IMAGE = "congtusoma146/techworld"
+	/* environment{
+		DOCKER_IMAGE = "congtusoma146/techworld" */
 }
 	stages {
-		stage("Test")
+
+		statge ("build"){
+			steps {
+				echo 'Hello build'
+		}
+		stage("test")
 		{
-			agent 
+			/* agent 
 			{
 				docker {
 					image 'node:13-alpine'
 					args '-u 0:0 -v /tmp:/root/.cache'
 					}
 				
-			}
+			} */
 			steps {
-				echo 'Hello world'
+				echo 'Hello test'
 				/* sh "pip npm install"
 				sh "npm install" */
 				/* sh "npm run test" */
 			}
+		}
+		statge ("deploy"){
+			steps {
+				echo 'Hello deploy'
 		}
 		}
 post {
