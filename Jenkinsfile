@@ -16,8 +16,8 @@ pipeline{
 				
 			}
 			steps {
-				sh "pip install npm"
-				sh "install npm"
+				sh "pip npm install"
+				sh "npm install"
 				/* sh "npm run test" */
 			}
 		}
