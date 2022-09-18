@@ -9,6 +9,7 @@ pipeline{
 			steps {
 				echo 'Hello build'
 		}
+		}
 		stage("test")
 		{
 			/* agent 
@@ -40,5 +41,4 @@ post {
     }
   }
 }
-	}
 }
