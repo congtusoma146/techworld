@@ -2,7 +2,7 @@ pipeline{
 
 	agent none // biến toàn cục
 	environment{
-		DOCKER_IMAGE = "congtusoma146/test-jenkins"
+		DOCKER_IMAGE = "congtusoma146/techworld"
 }
 	stages {
 		stage("Test")
@@ -16,7 +16,7 @@ pipeline{
 				
 			}
 			steps {
-				echo "Hello world"
+				echo 'Hello world'
 				/* sh "pip npm install"
 				sh "npm install" */
 				/* sh "npm run test" */
