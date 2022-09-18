@@ -1,6 +1,6 @@
 pipeline{
 
-	agent none // biến toàn cục
+	agent any // biến toàn cục
 	environment{
 		DOCKER_IMAGE = "congtusoma146/techworld"
 }
