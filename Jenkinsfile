@@ -8,7 +8,7 @@ pipeline{
 		stage ("build"){
 			steps {
 				echo 'Hello build'
-		}
+			}
 		}
 		stage("test")
 		{
@@ -30,15 +30,15 @@ pipeline{
 		stage ("deploy"){
 			steps {
 				echo 'Hello deploy'
+			}
 		}
-		}
-post {
-    success {
-      echo "SUCCESSFUL"
-    }
-    failure {
-      echo "FAILED"
-    }
-  }
-}
+	/* post {
+    	success {
+      		echo "SUCCESSFUL"
+    			}
+    	failure {
+      		echo "FAILED"
+    			}
+  		}
+	} */
 }
