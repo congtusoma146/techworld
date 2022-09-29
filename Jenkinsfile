@@ -1,10 +1,14 @@
 pipeline{
 
 	agent none 
+
+	environment {
+		DOCKER_IMAGE = "congtusoma146/techworld"
+	}
 	
 	stages {
 
-		stage('Test')
+		stage("Test")
 		{
 			agent{
 				docker {
