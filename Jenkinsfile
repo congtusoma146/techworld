@@ -3,7 +3,7 @@ pipeline{
 	agent none 
 
 	environment {
-		DOCKER_IMAGE = "congtusoma146/docker101tutorial"
+		DOCKER_IMAGE = "congtusoma146/techworld"
 	}
 	
 	stages {
