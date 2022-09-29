@@ -3,7 +3,7 @@ pipeline{
 	agent none 
 
 	environment {
-		DOCKER_IMAGE = "congtusoma146/techworld"
+		DOCKER_IMAGE = "congtusoma146/docker101tutorial"
 	}
 	
 	stages {
@@ -17,6 +17,7 @@ pipeline{
 				}
 			}
 			steps {
+				sh "pip instal npm"
 				sh "npm install"				
 			}
 		}
