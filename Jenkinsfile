@@ -13,22 +13,21 @@ pipeline{
 			agent{
 				docker {
 					image 'node:13-alpine'
-					args '-u 0:0 -v /tmp:/root/.cache'
+					/* args '-u 0:0 -v /tmp:/root/.cache' */
 				}
 			}
 			steps {
-				sh "pip instal npm"
-				sh "npm install"				
+				sh 'node --version'				
 			}
 		}
 
-		stage('Build'){
+		stage("Build"){
 			steps {
 				echo 'Hello build......'
 			}
 		}
 		
-		stage('Deploy'){
+		stage("Deploy"){
 			steps {
 				echo 'Hello deploy.....'
 			}
