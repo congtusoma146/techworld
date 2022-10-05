@@ -19,7 +19,7 @@ pipeline{
 			}
 			post {
 				failure {
-					echo"build error"
+					echo "build error"
 				}
 			}
 		}
