@@ -6,7 +6,7 @@ pipeline{
 
 		stage('Build'){
 			steps {
-				sh 'cd D:\Documents\Jenkins\workspace\techworld\app'
+				sh 'cd D:/Documents/Jenkins/workspace/techworld/app'
 				sh 'npm install'
 				sh 'node server.js'
 			}
