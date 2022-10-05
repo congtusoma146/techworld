@@ -6,7 +6,9 @@ pipeline{
 
 		stage('Build'){
 			steps {
-				echo 'Hello build......'
+				cd ~/app
+				sh 'npm install'
+				sh 'node server.js'
 			}
 		}
 		stage('Test')
@@ -20,5 +22,5 @@ pipeline{
 				echo 'Hello deploy.....'
 			}
 		}
-	} 
+	}
 }
