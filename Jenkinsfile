@@ -7,9 +7,7 @@ pipeline{
 		{
 			
 			steps {
-				cd ~/app
-				sh 'npm install'
-				sh 'node server.js'				
+				echo 'build...'	
 			}
 			
 		}
