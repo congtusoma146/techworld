@@ -12,7 +12,6 @@ pipeline{
 			}
       		environment {
         		DOCKER_TAG="${GIT_BRANCH.tokenize('/').pop()}-${BUILD_NUMBER}-${GIT_COMMIT.substring(0,7)}"
-				echo "${DOCKER_TAG}"
       		}
       		steps {
 				sh "docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} . "
