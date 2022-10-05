@@ -1,14 +1,12 @@
 pipeline{
 
-	agent none 
+	agent any 
 
-	environment {
-		DOCKER_IMAGE = "congtusoma146/techworld"
-	}
+
 	
 	stages {
 
-		stage("Test")
+		stage("build")
 		{
 			agent{
 				docker {
@@ -17,19 +15,14 @@ pipeline{
 				}
 			}
 			steps {
-				sh 'node --version'				
+				cd ~/app
+				sh 'npm install'
+				sh 'node server.js'				
 			}
-		}
-
-		stage("Build"){
-			steps {
-				echo 'Hello build......'
-			}
-		}
-		
-		stage("Deploy"){
-			steps {
-				echo 'Hello deploy.....'
+			post {
+				failure {
+					echo"build error"
+				}
 			}
 		}
 	} 
