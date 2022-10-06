@@ -5,7 +5,7 @@ pipeline{
 		DOCKER_IMAGE="congtusoma146/techworld"
 	}
 	stages {
-		
+
 		stage("build") {
 			agent {
 				label 'master'
@@ -15,7 +15,7 @@ pipeline{
       		}
       		steps {
 				sh "docker build -t ${DOCKER_IMAGE} ."
-        		sh "docker tag ${DOCKER_IMAGE}:${DOCKER_TAG} ${DOCKER_IMAGE}:latest"
+        		/* sh "docker tag ${DOCKER_IMAGE}:${DOCKER_TAG} ${DOCKER_IMAGE}:latest" */
         		withCredentials([usernamePassword(credentialsId: 'docker-hub', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
             	sh 'echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin'
         		
