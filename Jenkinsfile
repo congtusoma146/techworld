@@ -5,7 +5,7 @@ pipeline{
 		DOCKER_IMAGE="congtusoma146/techworld"
 	}
 	stages {
-
+		
 		stage("build") {
 			agent {
 				label 'master'
