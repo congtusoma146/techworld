@@ -3,17 +3,17 @@ pipeline{
 	agent any
 
 	environment {
-		DOCKERHUB_CREDENTIALS=credentials('dockerhub')
+		DOCKERHUB_CREDENTIALS=credentials('docker-hub')
 		VERSION = "v-0.${env.BUILD_ID}"
-		APP_NAME = "js-app"
-		REPO_NAME = "buinguyen"
+		APP_NAME = "techworld"
+		REPO_NAME = "congtusoma146"
 	}
 
 	stages {
 
 		stage('Gitclone') {
 			steps {
-				git 'https://github.com/nguyenbuitk/js-app-with-docker-jenkins.git'
+				git 'https://github.com/congtusoma146/techworld.git'
 			}
 		}
 
