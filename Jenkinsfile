@@ -18,9 +18,6 @@ pipeline{
 		}
 
 		stage('Build') {
-			agent {
-				label 'master'
-			}
 			steps {
 				script {
 					IMAGE_NAME = "${REPO_NAME}/${APP_NAME}:${VERSION}"
