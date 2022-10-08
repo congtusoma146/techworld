@@ -15,6 +15,11 @@ pipeline{
 			steps {
 				git 'https://github.com/congtusoma146/techworld.git'
 			}
+			post{
+				failure{
+					echo "Error in gitclone"
+				}
+			}
 		}
 
 		stage('Build') {
@@ -30,11 +35,21 @@ pipeline{
             	sh "docker build -t ${IMAGE_NAME} ."
 
 			}
+			post{
+				failure{
+					echo "Error in build"
+				}
+			}
 		}
 
 		stage('Login') {
 			steps {
 				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+			}
+			post{
+				failure{
+					echo "Error in login"
+				}
 			}
 		}
 
@@ -42,6 +57,11 @@ pipeline{
 
 			steps {
 				sh "docker push ${IMAGE_NAME}"
+			}
+			post{
+				failure{
+					echo "Error in push"
+				}
 			}
 		}
 	}
