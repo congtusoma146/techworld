@@ -1,9 +1,8 @@
 pipeline{
 
-	agent none
+	agent any
 
 	environment {
-		DOCKERHUB_CREDENTIALS=credentials('docker-hub')
 		VERSION = "v-0.${env.BUILD_ID}"
 		APP_NAME = "techworld"
 		REPO_NAME = "congtusoma146"
@@ -30,7 +29,9 @@ pipeline{
 
 		stage('Login') {
 			steps {
-				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+				withCredentials([usernamePassword(credentialsId: 'docker-hub', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+            sh 'echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin'
+			}
 			}
 			post{
 				failure{
