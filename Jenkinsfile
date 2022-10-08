@@ -11,17 +11,6 @@ pipeline{
 
 	stages {
 
-		stage('Gitclone') {
-			steps {
-				git 'https://github.com/congtusoma146/techworld.git'
-			}
-			post{
-				failure{
-					echo "Error in gitclone"
-				}
-			}
-		}
-
 		stage('Build') {
 			agent {
 				node {label "$env.BRANCH_NAME"}
