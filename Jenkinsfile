@@ -13,13 +13,12 @@ pipeline{
 		stage('Build') {
 			agent {  label 'master'}
 			steps {
-				script {
+				environment {
 					DOCKER_IMAGE = "${REPO_NAME}/${APP_NAME}:${VERSION}"
 				}
 				echo "Running ${VERSION} on ${env.JENKINS_URL}"
             	echo "for branch ${env.BRANCH_NAME}"
             	sh "docker build -t ${DOCKER_IMAGE} . "
-
 			}
 			post{
 				failure{
