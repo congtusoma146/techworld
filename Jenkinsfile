@@ -1,6 +1,6 @@
 pipeline{
 
-	agent any
+	agent none
 
 	environment {
 		VERSION = "v-0.${env.BUILD_ID}"
@@ -11,7 +11,7 @@ pipeline{
 	stages {
 
 		stage('Build') {
-			agent { node {label 'master'}}
+			agent {  label 'master'}
 			steps {
 				script {
 					IMAGE_NAME = "${REPO_NAME}/${APP_NAME}:${VERSION}"
