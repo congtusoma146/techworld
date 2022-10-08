@@ -24,8 +24,7 @@ pipeline{
 				}
 				echo "Running ${VERSION} on ${env.JENKINS_URL}"
             	echo "for branch ${env.BRANCH_NAME}"
-				sh "docker run -v /var/run/docker.sock:/var/run/docker.sock -ti docker"
-            	sh "docker build -t ${IMAGE_NAME} --privileged ."
+            	sh "docker build -t ${IMAGE_NAME} ."
 
 			}
 		}
