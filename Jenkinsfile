@@ -6,6 +6,7 @@ pipeline{
 		VERSION = "v-0.${env.BUILD_ID}"
 		APP_NAME = "techworld"
 		REPO_NAME = "congtusoma146"
+		DOCKER_IMAGE = "${REPO_NAME}/${APP_NAME}:${VERSION}"
 	}
 
 	stages {
@@ -13,9 +14,6 @@ pipeline{
 		stage('Build') {
 			agent {  label 'master'}
 			steps {
-				environment {
-					DOCKER_IMAGE = "${REPO_NAME}/${APP_NAME}:${VERSION}"
-				}
 				echo "Running ${VERSION} on ${env.JENKINS_URL}"
             	echo "for branch ${env.BRANCH_NAME}"
             	sh "docker build -t ${DOCKER_IMAGE} . "
