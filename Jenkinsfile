@@ -12,9 +12,6 @@ pipeline{
 	stages {
 
 		stage('Build') {
-			agent {
-				node {label "$env.BRANCH_NAME"}
-			}
 			steps {
 				script {
 					IMAGE_NAME = "${REPO_NAME}/${APP_NAME}:${VERSION}"
