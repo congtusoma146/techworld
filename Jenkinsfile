@@ -14,12 +14,11 @@ pipeline{
 			agent {  label 'master'}
 			steps {
 				script {
-					IMAGE_NAME = "${REPO_NAME}/${APP_NAME}:${VERSION}"
+					DOCKER_IMAGE = "${REPO_NAME}/${APP_NAME}:${VERSION}"
 				}
 				echo "Running ${VERSION} on ${env.JENKINS_URL}"
             	echo "for branch ${env.BRANCH_NAME}"
-            	shell '''docker build -t ${DOCKER_IMAGE}
-				 '''
+            	sh "docker build -t ${DOCKER_IMAGE} . "
 
 			}
 			post{
