@@ -16,7 +16,7 @@ pipeline{
 			steps {
 				echo "Running ${VERSION} on ${env.JENKINS_URL}"
             	echo "for branch ${env.BRANCH_NAME}"
-            	sh "docker build -t ${DOCKER_IMAGE} . "
+				shell '''docker build -t ${DOCKER_IMAGE} . '''
 			}
 			post{
 				failure{
