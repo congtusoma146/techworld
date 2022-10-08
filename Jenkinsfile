@@ -1,6 +1,6 @@
 pipeline{
 
-	agent none
+	agent any
 
 	environment {
 		VERSION = "v-0.${env.BUILD_ID}"
@@ -53,7 +53,7 @@ pipeline{
 
 	post {
 		always {
-			sh 'docker logout'
+			shell '''docker logout'''
 		}
 	}
 
