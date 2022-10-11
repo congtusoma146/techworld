@@ -20,7 +20,8 @@ pipeline{
         			/* bat "docker tag ${DOCKER_IMAGE} ${DOCKER_IMAGE}:latest"
         			bat "docker image ls | grep ${DOCKER_IMAGE}" */
         			withCredentials([usernamePassword(credentialsId: 'docker-hub', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
-            		bat 'echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin'
+            		bat 'echo $DOCKER_USERNAME'
+					bat 'echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin'
             		/* bat "docker pubat ${DOCKER_IMAGE}:${DOCKER_TAG}" */
             		bat "docker push ${DOCKER_IMAGE}:latest"
         			}
