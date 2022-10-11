@@ -32,8 +32,8 @@ pipeline{
     		}
 
 		stage('Login') {
-			steps {
-				/* bat '''docker logout'''
+			/*steps {
+				 bat '''docker logout'''
             bat '''echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'''
 			} */
 			post{
