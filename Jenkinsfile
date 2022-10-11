@@ -27,14 +27,15 @@ pipeline{
 					}
 				} */
         		//clean to save disk
+				bat'''docker image rm ${DOCKER_IMAGE}''' 
       				}
     		}
 
 		stage('Login') {
 			steps {
-				bat '''docker logout'''
+				/* bat '''docker logout'''
             bat '''echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'''
-			}
+			} */
 			post{
 				failure{
 					echo "Error in login"
