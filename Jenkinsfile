@@ -46,6 +46,7 @@ pipeline{
 		stage('Push') {
 
 			steps {
+				bat "docker login"
 				bat "docker push ${DOCKER_IMAGE}"
 			}
 			post{
