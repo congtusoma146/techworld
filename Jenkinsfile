@@ -29,7 +29,6 @@ pipeline{
     		}
 
 		stage('Login') {
-			args '-u 0:0 '
 			steps {
 				withCredentials([usernamePassword(credentialsId: 'docker-hub', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
             bat '''echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin'''
@@ -42,7 +41,7 @@ pipeline{
 			}
 		}
 
-		stage('Pubat') {
+		stage('Push') {
 
 			steps {
 				bat '''docker push ${IMAGE_NAME}'''
