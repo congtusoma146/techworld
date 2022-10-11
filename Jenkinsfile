@@ -31,17 +31,17 @@ pipeline{
       				}
     		}
 
-		stage('Login') {
-			/*steps {
+		/* stage('Login') {
+			steps {
 				 bat '''docker logout'''
             bat '''echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'''
-			} */
+			}
 			post{
 				failure{
 					echo "Error in login"
 				}
 			}
-		}
+		} */
 
 		stage('Push') {
 
