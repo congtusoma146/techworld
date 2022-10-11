@@ -7,6 +7,7 @@ pipeline{
 		APP_NAME = "techworld"
 		REPO_NAME = "congtusoma146"
 		DOCKER_IMAGE = "${REPO_NAME}/${APP_NAME}:${VERSION}"
+		DOCKERHUB_CREDENTIALS=credentials('docker-hub')
 	}
 
 	stages {
@@ -31,9 +32,7 @@ pipeline{
 
 		stage('Login') {
 			steps {
-				withCredentials([usernamePassword(credentialsId: 'docker-hub', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
-            bat '''echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin'''
-			}
+            bat ''''echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin''''
 			}
 			post{
 				failure{
