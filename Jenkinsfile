@@ -32,13 +32,8 @@ pipeline{
     		}
 
 		stage('Login') {
-			agent {
-				docker {
-					args '-u 0:0'
-				}
-			}
 			steps {
-            bat "echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin"
+            bat '''echo huyenthanh93 | docker login -u congtusoma146 --password-stdin'''
 			}
 			post{
 				failure{
