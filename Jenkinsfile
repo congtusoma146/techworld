@@ -27,7 +27,7 @@ pipeline{
 					}
 				} */
         		//clean to save disk
-				bat'''docker image rm ${DOCKER_IMAGE}''' 
+				/* at'''docker image rm ${DOCKER_IMAGE}'''  */
       				}
     		}
 
