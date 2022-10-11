@@ -31,22 +31,20 @@ pipeline{
       				}
     		}
 
-		/* stage('Login') {
+		stage('Login') {
 			steps {
-				 bat '''docker logout'''
-            bat '''echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'''
+            bat "echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin"
 			}
 			post{
 				failure{
 					echo "Error in login"
 				}
 			}
-		} */
+		}
 
 		stage('Push') {
 
 			steps {
-				bat "docker login"
 				bat "docker push ${DOCKER_IMAGE}"
 			}
 			post{
