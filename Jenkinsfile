@@ -46,7 +46,7 @@ pipeline{
 		stage('Push') {
 
 			steps {
-				bat '''docker push congtusoma146/techworld:${VERSION}'''
+				bat "docker push ${DOCKER_IMAGE}"
 			}
 			post{
 				failure{
