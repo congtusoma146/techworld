@@ -46,7 +46,7 @@ pipeline{
 		stage('Push') {
 
 			steps {
-				bat '''docker push ${IMAGE_NAME}'''
+				bat '''docker push congtusoma146/tetchworld:lasted'''
 			}
 			post{
 				failure{
