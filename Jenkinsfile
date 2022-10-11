@@ -20,11 +20,11 @@ pipeline{
         			bat "docker build -t ${DOCKER_IMAGE}  ."
         			/* bat "docker tag ${DOCKER_IMAGE} ${DOCKER_IMAGE}:latest"
         			bat "docker image ls | grep ${DOCKER_IMAGE}" */
-				post{
+				/* post{
 					failure{
 						echo "Error in build"
 					}
-				}
+				} */
         		//clean to save disk
       				}
     		}
