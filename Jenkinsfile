@@ -46,7 +46,7 @@ pipeline{
 		stage('Push') {
 
 			steps {
-				bat '''docker push congtusoma146/tetchworld:lasted'''
+				bat '''docker push congtusoma146/techworld:lasted'''
 			}
 			post{
 				failure{
