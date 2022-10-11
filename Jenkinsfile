@@ -16,7 +16,7 @@ pipeline{
         			DOCKER_TAG="${GIT_BRANCH.tokenize('/').pop()}-${GIT_COMMIT.substring(0,7)}"
       			}
       			steps {
-        			bat "docker build -t --privileged ${DOCKER_IMAGE}  ."
+        			bat "docker build -t ${DOCKER_IMAGE}  ."
         			bat "docker tag ${DOCKER_IMAGE}:${DOCKER_TAG} ${DOCKER_IMAGE}:latest"
         			bat "docker image ls | grep ${DOCKER_IMAGE}"
         			withCredentials([usernamePassword(credentialsId: 'docker-hub', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
