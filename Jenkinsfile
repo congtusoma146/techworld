@@ -7,7 +7,7 @@ pipeline{
 		APP_NAME = "techworld"
 		REPO_NAME = "congtusoma146"
 		DOCKER_IMAGE = "${REPO_NAME}/${APP_NAME}:${VERSION}"
-		DOCKERHUB_CREDENTIALS=credentials('docker-hub')
+		DOCKERHUB_CREDENTIALS=credentials('docker-hub-token')
 	}
 
 	stages {
