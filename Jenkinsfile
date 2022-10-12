@@ -1,6 +1,6 @@
 pipeline{
 
-	agent {label 'linux'}
+	agent any
 
 	environment {
 		VERSION = "v-0.${env.BUILD_ID}"
