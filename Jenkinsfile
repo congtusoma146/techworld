@@ -33,7 +33,7 @@ pipeline{
 
 		stage('Login') {
 			steps {
-            bat '''echo $DOCKERHUB_CREDENTIALS_PSW  | docker login -u quangduy06.96@gmail.com  --password-stdin'''
+            sh 'echo $DOCKERHUB_CREDENTIALS_PSW  | docker login -u quangduy06.96@gmail.com  --password-stdin'
 			}
 			post{
 				failure{
