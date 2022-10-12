@@ -1,6 +1,6 @@
 pipeline{
 
-	agent any
+	agent {label 'linux'}
 
 	environment {
 		VERSION = "v-0.${env.BUILD_ID}"
@@ -19,6 +19,7 @@ pipeline{
       			}
       			steps {
         			bat "docker build -t ${DOCKER_IMAGE}  ."
+					sh "docker build -t ${DOCKER_IMAGE} ."
         			/* bat "docker tag ${DOCKER_IMAGE} ${DOCKER_IMAGE}:latest"
         			bat "docker image ls | grep ${DOCKER_IMAGE}" */
 				/* post{
@@ -33,8 +34,9 @@ pipeline{
 
 		stage('Login') {
 			steps {
-				bat '''docker logout'''
-            	bat '''echo $DOCKERHUB_CREDENTIALS_PSW  | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin https://index.docker.io/v1/'''
+				/* bat '''docker logout'''
+            	bat '''echo $DOCKERHUB_CREDENTIALS_PSW  | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin ''' */
+				sh 'echo $DOCKERHUB_CREDENTIALS_PSW  | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
 			}
 			post{
 				failure{
@@ -46,7 +48,8 @@ pipeline{
 		stage('Push') {
 
 			steps {
-				bat "docker push ${DOCKER_IMAGE}"
+				/* bat "docker push ${DOCKER_IMAGE}" */
+				sh "docker push ${DOCKER_IMAGE}"
 			}
 			post{
 				failure{
@@ -58,7 +61,8 @@ pipeline{
 
 	post {
 		always {
-			bat '''docker logout'''
+			/* bat '''docker logout''' */
+			sh 'docker logout'
 		}
 	}
 
