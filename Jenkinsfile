@@ -1,6 +1,6 @@
 pipeline{
 
-	agent none
+	agent any
 
 	environment {
 		VERSION = "v-0.${env.BUILD_ID}"
@@ -12,7 +12,7 @@ pipeline{
 
 	stages {
 			stage("build") {
-      			agent { node {label 'master'}}
+      			/* agent { node {label 'master'}} */
       			environment {
         			DOCKER_TAG="${GIT_BRANCH.tokenize('/').pop()}-${GIT_COMMIT.substring(0,7)}"
 					DOCKER_SCAN_SUGGEST=false
