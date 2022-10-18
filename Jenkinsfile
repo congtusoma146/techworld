@@ -18,7 +18,7 @@ pipeline{
 					DOCKER_SCAN_SUGGEST=false
       			}
       			steps {
-				sh "docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} ."
+				sh "docker build -t ${DOCKER_IMAGE} ."
         			/* bat "docker tag ${DOCKER_IMAGE} ${DOCKER_IMAGE}:latest"
         			bat "docker image ls | grep ${DOCKER_IMAGE}" */
 				/* post{
@@ -27,7 +27,7 @@ pipeline{
 					}
 				} */
         		//clean to save disk
-				sh "docker image rm ${DOCKER_IMAGE}:${DOCKER_TAG}"
+				sh "docker image rm ${DOCKER_IMAGE}"
       				}
     		}
 
