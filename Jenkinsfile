@@ -27,8 +27,7 @@ pipeline{
 					}
 				} */
         		//clean to save disk
-				sh "docker image rm ${DOCKER_IMAGE}"
-      				}
+				
     		}
 
 		stage('Login') {
@@ -49,6 +48,8 @@ pipeline{
 			steps {
 				/* bat "docker push ${DOCKER_IMAGE}" */
 				sh "docker push ${DOCKER_IMAGE}"
+				sh "docker image rm ${DOCKER_IMAGE}"
+      				}
 			}
 			post{
 				failure{
