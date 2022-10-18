@@ -12,14 +12,13 @@ pipeline{
 
 	stages {
 			stage("build") {
-      			/* agent { node {label 'master'}} */
+      			agent { node {label 'master'}}
       			environment {
         			DOCKER_TAG="${GIT_BRANCH.tokenize('/').pop()}-${GIT_COMMIT.substring(0,7)}"
 					DOCKER_SCAN_SUGGEST=false
       			}
       			steps {
-        			bat "docker build -t ${DOCKER_IMAGE}  ."
-					sh "docker build -t ${DOCKER_IMAGE} ."
+				sh "docker build -t ${DOCKER_IMAGE} ."
         			/* bat "docker tag ${DOCKER_IMAGE} ${DOCKER_IMAGE}:latest"
         			bat "docker image ls | grep ${DOCKER_IMAGE}" */
 				/* post{
