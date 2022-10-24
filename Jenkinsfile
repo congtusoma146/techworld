@@ -72,7 +72,7 @@ pipeline{
 
 					Start-Sleep -Seconds 5
 
-					robocopy "${$:env.WORKSPACE}" "${$:env.DEPLOY_PATH}" /e
+					robocopy "{$:env.WORKSPACE}" ${$env:DEPLOY_PATH} /e
 
 					start-WebappPool -Name $Deploymentool
 					start-Website -Name $Site 
