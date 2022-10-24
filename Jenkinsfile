@@ -9,6 +9,7 @@ pipeline{
 		DOCKER_IMAGE = "${REPO_NAME}/${APP_NAME}:${VERSION}"
 		DOCKERHUB_CREDENTIALS=credentials('docker')
 		DEPLOY_PATH = "C:\\inetpub\\wwwroot\\techworld"
+		WORKSPACE_PATH = "C:\\Users\\quang\\AppData\\Local\\Jenkins\\.jenkins\\workspace\\techworld"
 	}
 
 	stages {
@@ -62,9 +63,7 @@ pipeline{
 		stage('Publish') {
 
 			steps {
-				powershell"
-					$Deploymentool = "admin.local"
-					$Site = "techworld.local"
+				powershell "$Deploymentool = "admin.local" $Site = "techworld.local"
 					stop-WebappPool -Name $Deploymentool
 					stop-Website -Name $Site
 
@@ -77,6 +76,7 @@ pipeline{
 
 					exit 0
 				"
+					
       				
 			}
 			post{
