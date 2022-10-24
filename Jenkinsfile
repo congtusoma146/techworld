@@ -9,7 +9,7 @@ pipeline{
 		DOCKER_IMAGE = "${REPO_NAME}/${APP_NAME}:${VERSION}"
 		DOCKERHUB_CREDENTIALS=credentials('docker')
 		DEPLOY_PATH = "C:\\inetpub\\wwwroot"
-		WORKSPACE_PATH = "C:\\Users\\quang\\AppData\\Local\\Jenkins\\.jenkins\\workspace\\"
+		WORKSPACE_PATH = "C:\\Users\\quang\\AppData\\Local\\Jenkins\\.jenkins\\workspace\\techworld"
 	}
 
 	stages {
