@@ -8,7 +8,7 @@ pipeline{
 		REPO_NAME = "congtusoma146"
 		DOCKER_IMAGE = "${REPO_NAME}/${APP_NAME}:${VERSION}"
 		DOCKERHUB_CREDENTIALS=credentials('docker')
-		DEPLOY_PATH = C:\inetpub\wwwroot\techworld
+		DEPLOY_PATH = "C:\\inetpub\\wwwroot\\techworld"
 	}
 
 	stages {
