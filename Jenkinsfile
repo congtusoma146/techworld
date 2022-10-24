@@ -63,7 +63,7 @@ pipeline{
 		stage('Publish') {
 
 			steps {
-				powershell '''
+				bat '''
 					$Deploymentool = "admin.local" 
 					$Site = "techworld.local"
 
