@@ -63,7 +63,10 @@ pipeline{
 		stage('Publish') {
 
 			steps {
-				powershell '''$Deploymentool = "admin.local" $Site = "techworld.local"
+				powershell '''
+					$Deploymentool = "admin.local" 
+					$Site = "techworld.local"
+					
 					stop-WebappPool -Name $Deploymentool
 					stop-Website -Name $Site
 
