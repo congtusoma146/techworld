@@ -63,7 +63,7 @@ pipeline{
 		stage('Publish') {
 
 			steps {
-				bat '''
+				powershell '''
 					$Deploymentool = "admin.local" 
 					$Site = "techworld.local"
 
@@ -72,14 +72,13 @@ pipeline{
 
 					Start-Sleep -Seconds 5
 
-					robocopy "${env.WORKSPACE_PATH}" "${env.DEPLOY_PATH}" /e
+					robocopy "${env.WORKSPACE}" "${env.DEPLOY_PATH}" /e
 
 					start-WebappPool -Name $Deploymentool
 					start-Website -Name $Site 
 
 					exit 0
-				'''
-					
+					'''				
       				
 			}
 			post{
