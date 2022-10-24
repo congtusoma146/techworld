@@ -9,7 +9,7 @@ pipeline{
 		DOCKER_IMAGE = "${REPO_NAME}/${APP_NAME}:${VERSION}"
 		DOCKERHUB_CREDENTIALS=credentials('docker')
 		DEPLOY_PATH = "C:\\inetpub\\wwwroot"
-		WORKSPACE_PATH = "C:\\Users\\quang\\AppData\\Local\\Jenkins\\.jenkins\\workspace"
+		WORKSPACE_PATH = "C:\\Users\\quang\\AppData\\Local\\Jenkins\\.jenkins\\workspace\\"
 	}
 
 	stages {
@@ -72,7 +72,7 @@ pipeline{
 
 					Start-Sleep -Seconds 5
 
-					robocopy ${$env.WORKSPACE_PATH} ${$env:DEPLOY_PATH} /e
+					robocopy "${env.WORKSPACE_PATH}" "${env.DEPLOY_PATH}"  /e
 
 					start-WebappPool -Name $Deploymentool
 					start-Website -Name $Site 
