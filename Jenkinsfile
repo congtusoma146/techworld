@@ -8,6 +8,7 @@ pipeline{
 		REPO_NAME = "congtusoma146"
 		DOCKER_IMAGE = "${REPO_NAME}/${APP_NAME}:${VERSION}"
 		DOCKERHUB_CREDENTIALS=credentials('docker')
+		DEPLOY_PATH = C:\\inetpub\\wwwroot\\techworld
 	}
 
 	stages {
@@ -61,7 +62,22 @@ pipeline{
 		stage('Publish') {
 
 			steps {
-      				echo 'hello world'
+				powershell'''
+					$Deploymentool = "admin.local"
+					$Site = "techworld.local"
+					stop-WebappPool -Name $Deploymentool
+					stop-Website -Name $Site
+
+					Start-Sleep -Seconds 5
+
+					robocopy "$WORKSPACE" "${env.DEPLOY_PATH}"
+
+					start-WebappPool -Name $Deploymentool
+					start-Website -Name $Site 
+
+					exit 0
+				'''
+      				
 			}
 			post{
 				failure{
