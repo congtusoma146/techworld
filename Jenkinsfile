@@ -7,7 +7,7 @@ pipeline{
 		APP_NAME = "techworld"
 		REPO_NAME = "congtusoma146"
 		DOCKER_IMAGE = "${REPO_NAME}/${APP_NAME}:${VERSION}"
-		DOCKERHUB_CREDENTIALS=credentials('docker-hub-quangduy')
+		DOCKERHUB_CREDENTIALS=credentials('docker')
 	}
 
 	stages {
@@ -18,7 +18,7 @@ pipeline{
 					DOCKER_SCAN_SUGGEST=false
       			}
       			steps {
-				sh "docker build -t ${DOCKER_IMAGE} ."
+				powershell "docker build -t ${DOCKER_IMAGE} ."
         			/* bat "docker tag ${DOCKER_IMAGE} ${DOCKER_IMAGE}:latest"
         			bat "docker image ls | grep ${DOCKER_IMAGE}" */
 				/* post{
@@ -34,7 +34,8 @@ pipeline{
 			steps {
 				/* bat '''docker logout'''
             	bat '''echo $DOCKERHUB_CREDENTIALS_PSW  | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin ''' */
-				sh 'echo $DOCKERHUB_CREDENTIALS_PSW  | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+				powershell '''echo $DOCKERHUB_CREDENTIALS_PSW  | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin
+				'''
 			}
 			post{
 				failure{
@@ -47,8 +48,8 @@ pipeline{
 
 			steps {
 				/* bat "docker push ${DOCKER_IMAGE}" */
-				sh "docker push ${DOCKER_IMAGE}"
-				sh "docker image rm ${DOCKER_IMAGE}"
+				powershell "docker push ${DOCKER_IMAGE}"
+				powershell "docker image rm ${DOCKER_IMAGE}"
       				
 			}
 			post{
@@ -57,12 +58,23 @@ pipeline{
 				}
 			}
 		}
+		stage('Publish') {
+
+			steps {
+      				echo 'hello world'
+			}
+			post{
+				failure{
+					echo "Error in publish"
+				}
+			}
+		}
 	}
 
 	post {
 		always {
 			/* bat '''docker logout''' */
-			sh 'docker logout'
+			powershell 'docker logout'
 		}
 	}
 
