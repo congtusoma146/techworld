@@ -37,7 +37,7 @@ pipeline{
 				/* bat '''docker logout'''
             	bat '''echo $DOCKERHUB_CREDENTIALS_PSW  | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin ''' */
 				/* powershell "echo 123456789  | docker login -u congtusoma146 --password-stdin" */
-				powershell """echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin"""
+				powershell '''echo $:DOCKERHUB_CREDENTIALS_PSW | docker login -u $:DOCKERHUB_CREDENTIALS_USR --password-stdin'''
 			}
 			post{
 				failure{
