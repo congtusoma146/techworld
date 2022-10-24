@@ -63,19 +63,19 @@ pipeline{
 		stage('Publish') {
 
 			steps {
-				powershell "$Deploymentool = "admin.local" $Site = "techworld.local"
+				powershell '''$Deploymentool = "admin.local" $Site = "techworld.local"
 					stop-WebappPool -Name $Deploymentool
 					stop-Website -Name $Site
 
 					Start-Sleep -Seconds 5
 
-					robocopy "$WORKSPACE" "${env.DEPLOY_PATH}" /e
+					robocopy "${env.WORKSPACE_PATH}" "${env.DEPLOY_PATH}" /e
 
 					start-WebappPool -Name $Deploymentool
 					start-Website -Name $Site 
 
 					exit 0
-				"
+				'''
 					
       				
 			}
