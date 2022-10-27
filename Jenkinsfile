@@ -36,17 +36,17 @@ pipeline{
 			steps {
 				/* bat '''docker logout'''
             	bat '''echo $DOCKERHUB_CREDENTIALS_PSW  | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin ''' */
-				/* powershell "echo 123456789  | docker login -u congtusoma146 --password-stdin" */
+				powershell "docker login -u congtusoma146 -password 123456789"
 				/* powershell "echo ${DOCKERHUB_CREDENTIALS_USR}"
 				powershell '''echo ['DOCKERHUB_CREDENTIALS_PSW']|docker login -u $env:DOCKERHUB_CREDENTIALS_USR --password-stdin ''' */
-				withCredentials([usernamePassword(credentialsId: 'docker', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+				//withCredentials([usernamePassword(credentialsId: 'docker', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
   				// available as an env variable, but will be masked if you try to print it out any which way
   				// note: single quotes prevent Groovy interpolation; expansion is by Bourne Shell, which is what you want
-  				powershell 'echo ${PASSWORD}|docker login -u ${USERNAME} --password-stdin'
+  				//powershell 'echo ${PASSWORD}|docker login -u ${USERNAME} --password-stdin'
   				// also available as a Groovy variable
-  				echo USERNAME
+  				//echo USERNAME
   				// or inside double quotes for string interpolation
-  				echo "username is $USERNAME"
+  				//echo "username is $USERNAME"
 				
 }
 			}
