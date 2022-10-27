@@ -32,7 +32,7 @@ pipeline{
 			}
     		}
 
-		stage('Login') {
+			stage('Login') {
 			steps {
 				/* bat '''docker logout'''
             	bat '''echo $DOCKERHUB_CREDENTIALS_PSW  | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin ''' */
@@ -48,15 +48,13 @@ pipeline{
   				// or inside double quotes for string interpolation
   				//echo "username is $USERNAME"
 				
-}
 			}
 			post{
 				failure{
 					echo "Error in login"
 				}
 			}
-		}
-
+			}
 		stage('Push') {
 
 			steps {
@@ -105,8 +103,11 @@ pipeline{
   					sshagent (credentials: ['3.73.116.148']) {
     				sh 'ssh -o StrictHostKeyChecking=no -l ec2-user 172.31.37.245 "echo "hello world" " '
   					}
+					}post{
+						failure echo "error in Remote"
 					}
 			}
+
 		}
 	}
 
@@ -116,5 +117,4 @@ pipeline{
 			powershell 'docker logout'
 		}
 	}
-
 }
