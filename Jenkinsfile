@@ -36,7 +36,7 @@ pipeline{
 			steps {
 				/* bat '''docker logout'''
             	bat '''echo $DOCKERHUB_CREDENTIALS_PSW  | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin ''' */
-				powershell "docker login -u congtusoma146 -password 123456789"
+				powershell '''docker login -u congtusoma146 -password 123456789'''
 				/* powershell "echo ${DOCKERHUB_CREDENTIALS_USR}"
 				powershell '''echo ['DOCKERHUB_CREDENTIALS_PSW']|docker login -u $env:DOCKERHUB_CREDENTIALS_USR --password-stdin ''' */
 				//withCredentials([usernamePassword(credentialsId: 'docker', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
