@@ -69,7 +69,7 @@ pipeline{
 				}
 			}
 		}
-		stage('Publish') {
+	/* 	stage('Publish') {
 
 			steps {
 				powershell '''
@@ -95,12 +95,12 @@ pipeline{
 					echo "Error in publish"
 				}
 			}
-		}
+		} */
 		stage('Remote'){
 			agent{node {label 'master'}}
 			steps{
 					sshagent (credentials: ['3.73.116.148']) {
-    				sh 'ssh -o StrictHostKeyChecking=no -l ec2-user 172.31.11.216 "echo "hello world" " '
+    				sh 'ssh -o StrictHostKeyChecking=no -l ec2-user 3.68.71.137 "echo "hello world" " '
 					}				
 					post{
 						failure{
