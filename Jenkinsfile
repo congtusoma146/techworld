@@ -100,9 +100,12 @@ pipeline{
 
 			steps{
 				node {
-  					sshagent (credentials: ['3.73.116.148']) {
+					label 'master'
+					{
+						sshagent (credentials: ['3.73.116.148']) {
     				sh 'ssh -o StrictHostKeyChecking=no -l ec2-user 172.31.37.245 "echo "hello world" " '
   					}
+					}  					
 					}
 					post{
 						failure echo "error in Remote"
