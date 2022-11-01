@@ -100,7 +100,7 @@ pipeline{
 			agent{node {label 'master'}}
 			steps{
 					sshagent (credentials: ['3.73.116.148']) {
-    				sh 'ssh -o StrictHostKeyChecking=no -l ec2-user 3.73.116.148 "/script.sh" '
+    				sh 'ssh -o StrictHostKeyChecking=no -l ec2-user 3.73.116.148 "./script.sh" '
 					}				
 					post{
 						failure{
