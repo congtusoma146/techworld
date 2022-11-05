@@ -100,7 +100,7 @@ pipeline{
 			agent{node {label 'master'}}
 			steps{
 					sshagent (credentials: ['3.73.116.148']) {
-    				sh 'ssh -o StrictHostKeyChecking=no -l ec2-user 3.73.116.148 "docker pull ${DOCKER_IMAGE}\n touch docker-compose.yaml\n cp ${WORKSPACE_PATH}\\docker-compose.yml docker-compose.yaml\n docker docker-compose -f docker-compose.yaml up\n npm install\n node server.js " '
+    				sh 'ssh -o StrictHostKeyChecking=no -l ec2-user 3.73.116.148 "docker pull ${DOCKER_IMAGE}\n touch docker-compose.yaml\n cp `${WORKSPACE_PATH}\\docker-compose.yml` `docker-compose.yaml`\n docker docker-compose -f docker-compose.yaml up\n npm install\n node server.js " '
 					}				
 					post{
 						failure{
