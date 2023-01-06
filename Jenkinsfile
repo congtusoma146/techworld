@@ -96,7 +96,7 @@ pipeline{
 				}
 			}
 		} */
-		stage('Remote'){
+		/*stage('Remote'){
 			agent{node {label 'master'}}
 			steps{
 					sshagent (credentials: ['3.73.116.148']) {
@@ -109,7 +109,7 @@ pipeline{
 					}
 			}
 
-		}
+		}*/
 	}
 
 	post {
