@@ -13,17 +13,15 @@ pipeline{
 	}
 
 	stages {
-			node {
-  				stage('SCM') {
+  			stage("SCM") {
     				checkout scm
-  				}
-  				stage('SonarQube Analysis') {
-    					def scannerHome = tool 'SonarScanner';
-    					withSonarQubeEnv() {
-      						powershell "${scannerHome}/bin/sonar-scanner"
-    					}
-  				}
-			}
+  			}
+  			stage("SonarQube Analysis") {
+				def scannerHome = tool 'SonarScanner';
+    				withSonarQubeEnv() {
+      					powershell "${scannerHome}/bin/sonar-scanner"
+    				}
+  			}
 			stage("build") {
       			/*agent { node {label 'master'}}*/
       			environment {
