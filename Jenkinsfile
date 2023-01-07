@@ -1,7 +1,17 @@
 pipeline{
 
 	agent any
-
+	node {
+  stage('SCM') {
+    checkout scm
+  }
+  stage('SonarQube Analysis') {
+    def scannerHome = tool 'SonarScanner';
+    withSonarQubeEnv() {
+      powershell "${scannerHome}/bin/sonar-scanner"
+    }
+  }
+}
 	environment {
 		VERSION = "v-0.${env.BUILD_ID}"
 		APP_NAME = "techworld"
@@ -13,15 +23,6 @@ pipeline{
 	}
 
 	stages {
-  			stage("SCM") {
-    				checkout scm
-  			}
-  			stage("SonarQube Analysis") {
-				def scannerHome = tool 'SonarScanner';
-    				withSonarQubeEnv() {
-      					powershell "${scannerHome}/bin/sonar-scanner"
-    				}
-  			}
 			stage("build") {
       			/*agent { node {label 'master'}}*/
       			environment {
