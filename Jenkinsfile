@@ -114,7 +114,7 @@ pipeline{
 		stage('SonarQube Analysis') {
 			steps{
 				script{
-					def scannerHome = tool 'SonarScanner 4.0';
+					def scannerHome = tool 'SonarScanner';
     					withSonarQubeEnv('SonarScanner') {
       					powershell "${scannerHome}/bin/sonar-scanner"
 					}	
