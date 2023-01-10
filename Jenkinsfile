@@ -12,22 +12,7 @@ pipeline{
 	}
 
 	stages {
-			node {
-  		stage('SCM') {
-    			checkout scm
-  		}
-  		stage('SonarQube Analysis') {
-    			def scannerHome = tool 'SonarScanner';
-    			withSonarQubeEnv() {
-      				powershell "${scannerHome}/bin/sonar-scanner"
-    			}
-  		}
-		post{
-				failure{
-					echo "Error in Sonarqube"
-				}
-			}
-	}
+  		
 			stage("build") {
       			/*agent { node {label 'master'}}*/
       			environment {
@@ -126,6 +111,18 @@ pipeline{
 			}
 
 		}*/
+		stage('SonarQube Analysis') {
+			steps{
+				withSonarQubeEnv(installationName: 'techworld'){
+					powershell "./app clean {$WORKSPACE_PATH}"
+				
+  		}
+		post{
+				failure{
+					echo "Error in Sonarqube"
+				}
+			}
+	}
 	}
 
 	post {
