@@ -113,10 +113,10 @@ pipeline{
 		}*/
 		stage('SonarQube Analysis') {
 			steps{
-				withSonarQubeEnv(installationName: 'SonarScanner'){
-					powershell " clean ${WORKSPACE_PATH}"
-				
-  				}
+				def scannerHome = tool 'SonarScanner 4.8.0.2856';
+    				withSonarQubeEnv('SonarScanner') {
+      					powershell "${scannerHome}/bin/sonar-scanner"
+				}
 			}
 			post{
 				failure{
