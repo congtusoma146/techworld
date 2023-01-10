@@ -8,7 +8,7 @@ pipeline{
 		DOCKER_IMAGE = "${REPO_NAME}/${APP_NAME}:${VERSION}"
 		DOCKERHUB_CREDENTIALS=credentials('docker')
 		DEPLOY_PATH = "C:\\inetpub\\wwwroot"
-		WORKSPACE_PATH = "C:\\Users\\quang\\AppData\\Local\\Jenkins\\.jenkins\\workspace\\techworld"
+		WORKSPACE_PATH = "C:\\Users\\quang\\AppData\\Local\\Jenkins\\.jenkins\\workspace\\Sonarqube-test"
 	}
 
 	stages {
@@ -114,7 +114,7 @@ pipeline{
 		stage('SonarQube Analysis') {
 			steps{
 				withSonarQubeEnv(installationName: 'SonarScanner'){
-					powershell "./app clean ${WORKSPACE_PATH}"
+					powershell " clean ${WORKSPACE_PATH}"
 				
   				}
 			}
