@@ -22,6 +22,11 @@ pipeline{
       				powershell "${scannerHome}/bin/sonar-scanner"
     			}
   		}
+		post{
+				failure{
+					echo "Error in Sonarqube"
+				}
+			}
 	}
 			stage("build") {
       			/*agent { node {label 'master'}}*/
@@ -31,6 +36,7 @@ pipeline{
       			}
       			steps {
 				powershell "docker build -t ${DOCKER_IMAGE} ."
+				
         			/* bat "docker tag ${DOCKER_IMAGE} ${DOCKER_IMAGE}:latest"
         			bat "docker image ls | grep ${DOCKER_IMAGE}" */
 				/* post{
