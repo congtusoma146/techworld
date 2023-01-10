@@ -116,13 +116,14 @@ pipeline{
 				withSonarQubeEnv(installationName: 'techworld'){
 					powershell "./app clean ${WORKSPACE_PATH}"
 				
-  		}
-		post{
+  				}
+			}
+			post{
 				failure{
 					echo "Error in Sonarqube"
 				}
 			}
-	}
+		}
 	}
 
 	post {
