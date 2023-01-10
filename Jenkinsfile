@@ -114,7 +114,7 @@ pipeline{
 		stage('SonarQube Analysis') {
 			steps{
 				withSonarQubeEnv(installationName: 'techworld'){
-					powershell "./app clean {$WORKSPACE_PATH}"
+					powershell "./app clean ${WORKSPACE_PATH}"
 				
   		}
 		post{
