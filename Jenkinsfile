@@ -12,6 +12,21 @@ pipeline{
 	}
 
 	stages {
+		stage('SonarQube Analysis') {
+			steps{
+				script{
+					def scannerHome = tool 'SonarScanner';
+    					withSonarQubeEnv('SonarScanner') {
+      					powershell "${scannerHome}/bin/sonar-scanner -y"
+					}	
+				}
+			}
+			post{
+				failure{
+					echo "Error in Sonarqube"
+				}
+			}
+		}
   		
 			stage("build") {
       			/*agent { node {label 'master'}}*/
@@ -111,21 +126,7 @@ pipeline{
 			}
 
 		}*/
-		stage('SonarQube Analysis') {
-			steps{
-				script{
-					def scannerHome = tool 'SonarScanner';
-    					withSonarQubeEnv('SonarScanner') {
-      					powershell "${scannerHome}/bin/sonar-scanner -y"
-					}	
-				}
-			}
-			post{
-				failure{
-					echo "Error in Sonarqube"
-				}
-			}
-		}
+		
 	}
 
 	post {
