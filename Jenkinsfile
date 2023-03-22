@@ -19,14 +19,6 @@ pipeline {
             }
             steps {
                 sh "docker build -t ${DOCKER_IMAGE} ."
-                    /* bat "docker tag ${DOCKER_IMAGE} ${DOCKER_IMAGE}:latest"
-                    bat "docker image ls | grep ${DOCKER_IMAGE}" */
-                /* post{
-                    failure{
-                        echo "Error in build"
-                    }
-                } */
-            //clean to save disk
             }
             }
 
@@ -53,7 +45,6 @@ pipeline {
         }
         post {
             always {
-                /* bat '''docker logout''' */
                 sh 'docker logout'
             }
         }
