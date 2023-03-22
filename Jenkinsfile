@@ -55,7 +55,6 @@ pipeline{
         stage('Push') {
 
             steps {
-                /* bat "docker push ${DOCKER_IMAGE}" */
                 sh "docker push ${DOCKER_IMAGE}"
                 sh "docker image rm ${DOCKER_IMAGE}"
                       
@@ -66,52 +65,11 @@ pipeline{
                 }
             }
         }
-    /*     stage('Publish') {
-
-            steps {
-                powershell '''
-                    $Deploymentool = "admin.local" 
-                    $Site = "techworld.local"
-
-                    stop-WebappPool -Name $Deploymentool
-                    stop-Website -Name $Site
-
-                    Start-Sleep -Seconds 5
-
-                    robocopy "$env:WORKSPACE_PATH" "$env:DEPLOY_PATH"  /e
-
-                    start-WebappPool -Name $Deploymentool
-                    start-Website -Name $Site 
-
-                    exit 0
-                    '''                
-                      
-            }
-            post{
-                failure{
-                    echo "Error in publish"
-                }
-            }
-        } */
-        /*stage('Remote'){
-            agent{node {label 'master'}}
-            steps{
-                    sshagent (credentials: ['3.73.116.148']) {
-                    sh 'ssh -o StrictHostKeyChecking=no -l ec2-user 3.73.116.148 "docker pull ${DOCKER_IMAGE}\n touch docker-compose.yaml\n cp `${WORKSPACE_PATH}\\docker-compose.yml` `docker-compose.yaml`\n docker docker-compose -f docker-compose.yaml up\n npm install\n node server.js " '
-                    }                
-                    post{
-                        failure{
-                            echo "error in Remote"
-                        } 
-                    }
-            }
-
-        }*/
-
     post {
         always {
             /* bat '''docker logout''' */
-            powershell 'docker logout'
+            sh 'docker logout'
         }
     }
+}
 }
