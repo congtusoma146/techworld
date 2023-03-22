@@ -10,8 +10,7 @@ pipeline{
         WORKSPACE_PATH = "C:\\Users\\quang\\AppData\\Local\\Jenkins\\.jenkins\\workspace\\techworld"
     }
 
-    stages {
-        node{
+    stages {   
             stage("build") {
                   environment {
                     DOCKER_TAG="${GIT_BRANCH.tokenize('/').pop()}-${GIT_COMMIT.substring(0,7)}"
@@ -27,10 +26,8 @@ pipeline{
                     }
                 } */
                 //clean to save disk
-                }
             }
-        }   
-            
+            }
 
             stage('Login') {
             steps {
