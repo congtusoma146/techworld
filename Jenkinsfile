@@ -1,5 +1,5 @@
 pipeline{
-    agent none
+    agent any
     environment {
         VERSION = "v-0.${env.BUILD_ID}"
         APP_NAME = "techworld"
