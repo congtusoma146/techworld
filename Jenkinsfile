@@ -1,39 +1,31 @@
 /* groovylint-disable-next-line CompileStatic */
 pipeline {
     agent any
-    environment {
+    /* environment {
         VERSION = "v-0.${env.BUILD_ID}"
         APP_NAME = "techworld"
         REPO_NAME = "congtusoma146"
         DOCKER_IMAGE = "${REPO_NAME}/${APP_NAME}:${VERSION}"
-        DOCKERHUB_CREDENTIALS = credentials('docker')
+        DOCKERHUB_CREDENTIALS = credentials('docker') */
        /*  DEPLOY_PATH = "C:\\inetpub\\wwwroot"
-        WORKSPACE_PATH = "C:\\Users\\quang\\AppData\\Local\\Jenkins\\.jenkins\\workspace\\techworld" */
+        WORKSPACE_PATH = "C:\\Users\\quang\\AppData\\Local\\Jenkins\\.jenkins\\workspace\\techworld"
     }
 
     stages {
-        /* stage('git')
-        {
-            steps{
-                sh 'cd techworl'
-            }
-        } */
-            stage('build') {
+           /*  stage('build') {
             environment {
                     DOCKER_TAG = "${GIT_BRANCH.tokenize('/').pop()}-${GIT_COMMIT.substring(0, 7)}"
                     DOCKER_SCAN_SUGGEST = false
             }
             steps {
-                sh 'pwd'
-                sh 'cd techworld'
                 sh "docker build -t ${DOCKER_IMAGE} ."
                     /* bat "docker tag ${DOCKER_IMAGE} ${DOCKER_IMAGE}:latest"
-                    bat "docker image ls | grep ${DOCKER_IMAGE}" */
+                    bat "docker image ls | grep ${DOCKER_IMAGE}" 
                 /* post{
                     failure{
                         echo "Error in build"
                     }
-                } */
+                }
             //clean to save disk
             }
             }
@@ -41,10 +33,10 @@ pipeline {
             stage('Login') {
             steps {
                 /* bat '''docker logout'''
-                bat '''echo $DOCKERHUB_CREDENTIALS_PSW  | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin ''' */
+                bat '''echo $DOCKERHUB_CREDENTIALS_PSW  | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin '''
                 sh '''docker login -u congtusoma146 --password 123456789'''
                 /* powershell "echo ${DOCKERHUB_CREDENTIALS_USR}"
-                powershell '''echo ['DOCKERHUB_CREDENTIALS_PSW']|docker login -u $env:DOCKERHUB_CREDENTIALS_USR --password-stdin ''' */
+                powershell '''echo ['DOCKERHUB_CREDENTIALS_PSW']|docker login -u $env:DOCKERHUB_CREDENTIALS_USR --password-stdin '''
                 //withCredentials([usernamePassword(credentialsId: 'docker', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                 // available as an env variable, but will be masked if you try to print it out any which way
                 // note: single quotes prevent Groovy interpolation; expansion is by Bourne Shell, which is what you want
@@ -63,7 +55,7 @@ pipeline {
             }
         stage('Push') {
             steps {
-                /* bat "docker push ${DOCKER_IMAGE}" */
+                /* bat "docker push ${DOCKER_IMAGE}"
                 sh "docker push ${DOCKER_IMAGE}"
                 sh "docker image rm ${DOCKER_IMAGE}"
             }
@@ -72,7 +64,7 @@ pipeline {
                     echo "Error in push"
                 }
             }
-        }
+        } */
         stage('publish to ecr'){
             steps{
                 withEnv(["AWS_ACCESS_KEY_ID=${env.AWS_ACCESS_KEY_ID}","AWS_SECRET_ACCESS_KEY=${env.AWS_SECRET_ACCESS_KEY}","AWS_DEFAULT_REGION=${env.AWS_DEFAULT_REGION}","AWS_FORMAT=${env.AWS_FORMAT}"]){
@@ -84,17 +76,6 @@ pipeline {
             
             }
         }
-        stage('logout'){
-            steps{
-                 post {
-                    always {
-                        /* bat '''docker logout''' */
-                        sh 'docker logout'
-                    }
-                }
-            }
-        }
-
     /*     stage('Publish') {
 
             steps {
@@ -136,5 +117,4 @@ pipeline {
             }
 
         }*/
-        }
 }
