@@ -3,7 +3,7 @@
 pipeline {
     agent any
     stages{
-        stage(publish to ecr)
+        stage('publish to ecr')
         {
             steps{
                 /* groovylint-disable-next-line LineLength */
