@@ -13,6 +13,7 @@ pipeline {
                     sh 'docker build -t jenkins .'
                     sh 'docker tag jenkins:latest 100521722927.dkr.ecr.ap-southeast-1.amazonaws.com/jenkins:latest'
                     sh 'docker push 100521722927.dkr.ecr.ap-southeast-1.amazonaws.com/jenkins:latest'
+                    sh 'aws ecs update-service --cluster jenkins --service jenkins --force-new-deployment --region ap-southeast-1'
                 }
             }
         }
