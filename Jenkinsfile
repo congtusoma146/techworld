@@ -12,12 +12,12 @@ pipeline {
     }
 
     stages {
-        stage('git')
+        /* stage('git')
         {
             steps{
-                sh 'cd $env:WORKSPACE_PATH\\app'
+                sh 'cd techworl'
             }
-        }
+        } */
             stage('build') {
             environment {
                     DOCKER_TAG = "${GIT_BRANCH.tokenize('/').pop()}-${GIT_COMMIT.substring(0, 7)}"
