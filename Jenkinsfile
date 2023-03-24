@@ -24,6 +24,8 @@ pipeline {
                     DOCKER_SCAN_SUGGEST = false
             }
             steps {
+                sh 'pwd'
+                sh 'cd techworld'
                 sh "docker build -t ${DOCKER_IMAGE} ."
                     /* bat "docker tag ${DOCKER_IMAGE} ${DOCKER_IMAGE}:latest"
                     bat "docker image ls | grep ${DOCKER_IMAGE}" */
