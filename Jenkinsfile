@@ -10,9 +10,9 @@ pipeline {
                 withEnv(["AWS_ACCESS_KEY_ID=${env.AWS_ACCESS_KEY_ID}", "AWS_SECRET_ACCESS_KEY=${env.AWS_SECRET_ACCESS_KEY}", "AWS_DEFAULT_REGION=${env.AWS_DEFAULT_REGION}", "AWS_FORMAT=${env.AWS_FORMAT}"]) {
                     /* groovylint-disable-next-line LineLength */
                     sh 'aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 100521722927.dkr.ecr.ap-southeast-1.amazonaws.com'
-                    sh 'docker build -t jenkin:${env.BUILD_ID} .'
-                    sh 'docker tag jenkins:${env.BUILD_ID} 100521722927.dkr.ecr.ap-southeast-1.amazonaws.com/jenkins:${env.BUILD_ID}'
-                    sh 'docker push 100521722927.dkr.ecr.ap-southeast-1.amazonaws.com/jenkins:${env.BUILD_ID}'
+                    sh "docker build -t jenkin:${env.BUILD_ID} ."
+                    sh "docker tag jenkins:${env.BUILD_ID} 100521722927.dkr.ecr.ap-southeast-1.amazonaws.com/jenkins:${env.BUILD_ID}"
+                    sh "docker push 100521722927.dkr.ecr.ap-southeast-1.amazonaws.com/jenkins:${env.BUILD_ID}"
                     sh 'aws ecs update-service --cluster jenkins --service jenkins --force-new-deployment --region ap-southeast-1'
                 }
             }
