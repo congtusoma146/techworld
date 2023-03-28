@@ -1,5 +1,5 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:ap-southeast-1:100521722927:task-definition/techworld-task:1",
+    "taskDefinitionArn": "arn:aws:ecs:ap-southeast-1:100521722927:task-definition/techworld-task:2",
     "containerDefinitions": [
         {
             "name": "techworld-cont",
