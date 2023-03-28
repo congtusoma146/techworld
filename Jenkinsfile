@@ -13,13 +13,14 @@ pipeline {
                     /* groovylint-disable-next-line LineLength */
                     sh 'aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 100521722927.dkr.ecr.ap-southeast-1.amazonaws.com'
                     // Build docker image
-                    sh 'docker build -t techworld:latest .'
+                    sh 'docker build -t techworld:2 .'
                     // Tạo Docker tag
-                    sh 'docker tag techworld:latest 100521722927.dkr.ecr.ap-southeast-1.amazonaws.com/techworld:latest'
+                    sh 'docker tag techworld:2 100521722927.dkr.ecr.ap-southeast-1.amazonaws.com/techworld:2'
                     // Push Docker lên ECR
-                    sh 'docker push 100521722927.dkr.ecr.ap-southeast-1.amazonaws.com/techworld:latest'
+                    sh 'docker push 100521722927.dkr.ecr.ap-southeast-1.amazonaws.com/techworld:2'
                     /* groovylint-disable-next-line LineLength */
-                    /* sh 'aws ecs update-service --cluster jenkins --service jenkins --force-new-deployment --region ap-southeast-1' */
+                    //push lên ECS
+                    sh 'aws ecs update-service --cluster jenkins --service jenkins --force-new-deployment --region ap-southeast-1'
                 }
             }
         }
