@@ -13,14 +13,23 @@ pipeline {
                     /* groovylint-disable-next-line LineLength */
                     sh 'aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 100521722927.dkr.ecr.ap-southeast-1.amazonaws.com'
                     // Build docker image
-                    sh 'docker build -t techworld:2 .'
+                    sh "docker build -t techworld:${env.BUILD_ID} ."
                     // Tạo Docker tag
-                    sh 'docker tag techworld:2 100521722927.dkr.ecr.ap-southeast-1.amazonaws.com/techworld:2'
+                    sh "docker tag techworld:${env.BUILD_ID} 100521722927.dkr.ecr.ap-southeast-1.amazonaws.com/techworld:${env.BUILD_ID}"
                     // Push Docker lên ECR
-                    sh 'docker push 100521722927.dkr.ecr.ap-southeast-1.amazonaws.com/techworld:2'
+                    sh "docker push 100521722927.dkr.ecr.ap-southeast-1.amazonaws.com/techworld:${env.BUILD_ID}"
                     /* groovylint-disable-next-line LineLength */
+                    ecsUpdateTaskDefinition(
+                        family: 'techworld-task',
+                        containerDefinitions: [
+                            [
+                                name: 'techworld-cont',
+                                image: "techworld/techworld:${env.BUILD_ID}"
+                            ]
+                        ]
+                    )
                     //push lên ECS
-                    sh 'aws ecs update-service --cluster jenkins --service jenkins --force-new-deployment --region ap-southeast-1'
+                    sh 'aws ecs update-service --cluster techworld-serv --service techworld-serv --force-new-deployment --region ap-southeast-1'
                 }
             }
         }
