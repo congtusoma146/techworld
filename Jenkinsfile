@@ -1,7 +1,8 @@
 /* groovylint-disable NglParseError, UnusedVariable */
 /* groovylint-disable-next-line CompileStatic, NglParseError */
-pipeline {
-    @Library('jenkins-libs') _
+@Library('jenkins-libs@main')
+/* groovylint-disable-next-line NglParseError */
+pipeline{
     agent any
     stages{
         stage('publish to ecr')
