@@ -22,8 +22,8 @@ pipeline{
                     // Push Docker lên ECR
                     sh "docker push 100521722927.dkr.ecr.ap-southeast-1.amazonaws.com/techworld:${env.BUILD_ID}"
                     /* groovylint-disable-next-line LineLength */
-                    sh 'aws ecs register-task-definition --family techworld-task --container-definitions "$(cat container-definitions.json | jq \'.[].image="100521722927.dkr.ecr.ap-southeast-1.amazonaws.com/techworld:${env.BUILD_ID}"\' )"'
-
+                    /* sh 'aws ecs register-task-definition --family techworld-task --container-definitions "$(cat container-definitions.json | jq \'.[].image="100521722927.dkr.ecr.ap-southeast-1.amazonaws.com/techworld:${env.BUILD_ID}"\' )"' */
+                    sh "sed -i 's|techworld:.*|techworld:${env.BUILD_ID}|g' task_definition.json"
 
                     //push lên ECS
                     /* groovylint-disable-next-line LineLength */
