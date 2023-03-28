@@ -1,6 +1,7 @@
-/* groovylint-disable NglParseError */
+/* groovylint-disable NglParseError, UnusedVariable */
 /* groovylint-disable-next-line CompileStatic, NglParseError */
 pipeline {
+    @Library('jenkins-libs')
     agent any
     stages{
         stage('publish to ecr')
@@ -15,6 +16,7 @@ pipeline {
                     // Build docker image
                     sh "docker build -t techworld:${env.BUILD_ID} ."
                     // Tạo Docker tag
+                    /* groovylint-disable-next-line LineLength */
                     sh "docker tag techworld:${env.BUILD_ID} 100521722927.dkr.ecr.ap-southeast-1.amazonaws.com/techworld:${env.BUILD_ID}"
                     // Push Docker lên ECR
                     sh "docker push 100521722927.dkr.ecr.ap-southeast-1.amazonaws.com/techworld:${env.BUILD_ID}"
@@ -29,6 +31,7 @@ pipeline {
                         ]
                     )
                     //push lên ECS
+                    /* groovylint-disable-next-line LineLength */
                     sh 'aws ecs update-service --cluster techworld-serv --service techworld-serv --force-new-deployment --region ap-southeast-1'
                 }
             }
