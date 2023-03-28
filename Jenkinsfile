@@ -3,7 +3,7 @@
 
 /* groovylint-disable-next-line NglParseError */
 pipeline{
-    @Library('jenkins-libs@main') _
+    @Library('jenkins-libs') _
     agent any
     stages{
         stage('publish to ecr')
