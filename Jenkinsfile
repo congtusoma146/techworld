@@ -22,8 +22,21 @@ pipeline{
                     // Push Docker lên ECR
                     sh "docker push 100521722927.dkr.ecr.ap-southeast-1.amazonaws.com/techworld:${env.BUILD_ID}"
                     /* groovylint-disable-next-line LineLength */
-                    sh 'pwd'
-                    sh "aws ecs register-task-definition --cli-input-json file://var//lib//jenkins//workspace//Techworld//task-definition.json"
+                    ecsTaskDefinition(
+                        taskDefinitionArn: 'arn:aws:ecs:us-west-2:123456789012:task-definition/techworld:1',
+                        containerDefinitions: [
+                        ecsContainerDefinition(
+                            name: 'techworld-cont',
+                            image: '100521722927.dkr.ecr.ap-southeast-1.amazonaws.com/techworld:${env.BUILD_ID}',
+                            portMappings: [
+                            ecsPortMapping(
+                                containerPort: 80,
+                                hostPort: 80
+                                )
+                            ]
+                        )
+                        ]
+                    )
                     //push lên ECS
                     /* groovylint-disable-next-line LineLength */
                     sh 'aws ecs update-service --cluster techworld-serv --service techworld-serv --force-new-deployment --region ap-southeast-1'
