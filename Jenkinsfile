@@ -11,9 +11,9 @@ pipeline {
                     /* groovylint-disable-next-line LineLength */
                     sh 'aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 100521722927.dkr.ecr.ap-southeast-1.amazonaws.com'
                     sh "docker build -t jenkins:latest ."
-                    sh "docker tag jenkins:latest 100521722927.dkr.ecr.ap-southeast-1.amazonaws.com/jenkins:latest"
+                    sh "docker tag techworld:latest 100521722927.dkr.ecr.ap-southeast-1.amazonaws.com/techworld:latest"
                     sh "docker push 100521722927.dkr.ecr.ap-southeast-1.amazonaws.com/jenkins:latest"
-                    sh 'aws ecs update-service --cluster jenkins --service jenkins --force-new-deployment --region ap-southeast-1'
+                    /* sh 'aws ecs update-service --cluster jenkins --service jenkins --force-new-deployment --region ap-southeast-1' */
                 }
             }
         }
