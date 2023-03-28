@@ -22,6 +22,7 @@ pipeline{
                     // Push Docker lên ECR
                     sh "docker push 100521722927.dkr.ecr.ap-southeast-1.amazonaws.com/techworld:${env.BUILD_ID}"
                     /* groovylint-disable-next-line LineLength */
+                    sh 'pwd'
                     sh "aws ecs register-task-definition --cli-input-json file://var//lib//jenkins//workspace//Techworld//task-definition.json"
                     //push lên ECS
                     /* groovylint-disable-next-line LineLength */
