@@ -2,7 +2,7 @@
 /* groovylint-disable-next-line CompileStatic, NglParseError */
 
 /* groovylint-disable-next-line NglParseError */
-pipeline{_
+pipeline{
     agent any
     stages{
         stage('publish to ecr')
