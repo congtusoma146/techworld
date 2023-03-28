@@ -1,0 +1,16 @@
+{
+    "family": "techworld",
+    "containerDefinitions": [
+        {
+            "name": "techworld-cont",
+            "image": "100521722927.dkr.ecr.ap-southeast-1.amazonaws.com/techworld:${env.BUILD_ID}",
+            "portMappings": [
+                {
+                    "containerPort": 80,
+                    "hostPort": 80
+                }
+            ]
+        }
+    ],
+    "networkMode": "bridge"
+}

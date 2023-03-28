@@ -2,8 +2,7 @@
 /* groovylint-disable-next-line CompileStatic, NglParseError */
 
 /* groovylint-disable-next-line NglParseError */
-pipeline{
-    @Library('jenkins-libs') _
+pipeline{_
     agent any
     stages{
         stage('publish to ecr')
@@ -23,15 +22,7 @@ pipeline{
                     // Push Docker lên ECR
                     sh "docker push 100521722927.dkr.ecr.ap-southeast-1.amazonaws.com/techworld:${env.BUILD_ID}"
                     /* groovylint-disable-next-line LineLength */
-                    ecsUpdateTaskDefinition(
-                        family: 'techworld-task',
-                        containerDefinitions: [
-                            [
-                                name: 'techworld-cont',
-                                image: "techworld/techworld:${env.BUILD_ID}"
-                            ]
-                        ]
-                    )
+                    sh "aws ecs register-task-definition --cli-input-json file:.//task-definition.json"
                     //push lên ECS
                     /* groovylint-disable-next-line LineLength */
                     sh 'aws ecs update-service --cluster techworld-serv --service techworld-serv --force-new-deployment --region ap-southeast-1'
