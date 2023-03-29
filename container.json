@@ -1,6 +1,6 @@
 [
-    "taskDefinitionArn": "arn:aws:ecs:ap-southeast-1:100521722927:task-definition/techworld-task:2",
-    "containerDefinitions": [
+    {
+    "containerDefinitions":
         {
             "name": "techworld-cont",
             "image": "100521722927.dkr.ecr.ap-southeast-1.amazonaws.com/techworld:latest",
@@ -13,7 +13,7 @@
                     "protocol": "tcp",
                     "appProtocol": "http"
                 }
-            ],
+                },
             "essential": true,
             "environment": [],
             "environmentFiles": [],
@@ -29,7 +29,7 @@
                 }
             }
         }
-    ],
+    },
     "family": "techworld-task",
     "taskRoleArn": "arn:aws:iam::100521722927:role/ecsTaskExecutionRole",
     "executionRoleArn": "arn:aws:iam::100521722927:role/ecsTaskExecutionRole",
@@ -37,7 +37,7 @@
     "revision": 1,
     "volumes": [],
     "status": "ACTIVE",
-    "requiresAttributes": [
+    "requiresAttributes": {
         {
             "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
         },
@@ -65,15 +65,15 @@
         {
             "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
         }
-    ],
+},
     "placementConstraints": [],
     "compatibilities": [
         "EC2",
         "FARGATE"
-    ],
-    "requiresCompatibilities": [
+        },
+    "requiresCompatibilities": {
         "FARGATE"
-    ],
+        },
     "cpu": "1024",
     "memory": "3072",
     "runtimePlatform": {
