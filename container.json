@@ -38,5 +38,10 @@
     ],
     "cpu": "1024",
     "memory": "3072",
-    "tags": []
+    "tags": [
+    {
+      "key": "env",
+      "value": "prod"
+    }
+  ]
 }
