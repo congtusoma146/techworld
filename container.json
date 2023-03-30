@@ -6,13 +6,13 @@
             "image": "100521722927.dkr.ecr.ap-southeast-1.amazonaws.com/techworld:latest",
             "cpu": 0,
             "portMappings": {
-                {
+                [
                     "name": "techworld-cont-80-tcp",
                     "containerPort": 80,
                     "hostPort": 80,
                     "protocol": "tcp",
                     "appProtocol": "http"
-                }
+                ]
                 },
             "essential": true,
             "environment": [],
