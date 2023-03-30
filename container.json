@@ -1,4 +1,4 @@
-[{
+{
     "taskDefinitionArn": "arn:aws:ecs:ap-southeast-1:100521722927:task-definition/techworld-task:2",
     "containerDefinitions": [
         {
@@ -84,4 +84,3 @@
     "registeredBy": "arn:aws:iam::100521722927:root",
     "tags": []
 }
-]
